@@ -20,6 +20,9 @@ from BeautifulSoup import BeautifulSoup
 import HTMLParser
 htmlparser = HTMLParser.HTMLParser()
 
+pathname = os.path.dirname(sys.argv[0])
+watchfile = os.path.join(pathname, 'watched_products.txt')
+
 def out(str):
     print >>sys.stdout, str
 
@@ -28,9 +31,9 @@ def error(str):
     sys.exit(1)
 
 if __name__ == '__main__':
-    wpfile = open('watched_products.txt', 'r')
+    wpfile = open(watchfile, 'r')
     if not wpfile:
-        error('could not open watched_products.txt')
+        error('could not open %s' % (watchfile))
 
     product_numbers = []
     number_regex = re.compile('([0-9]*)')
